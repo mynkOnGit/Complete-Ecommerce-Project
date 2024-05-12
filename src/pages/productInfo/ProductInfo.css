@@ -1,0 +1,6 @@
+.proImg{
+    flex-wrap: nowrap;
+    width: 50%;
+    height: 50%;
+    background: black;
+}

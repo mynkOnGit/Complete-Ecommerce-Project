@@ -7,6 +7,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { addToCart } from '../../redux/cartSlice';
 import { fireDB } from '../../fireabase/FirebaseConfig';
+import './ProductInfo.css'
 
 function ProductInfo() {
     const context = useContext(myContext);
@@ -63,12 +64,12 @@ function ProductInfo() {
                     <div className="lg:w-4/5 mx-auto flex flex-wrap">
                         <img
                             alt="ecommerce"
-                            className="lg:w-1/3 w-full lg:h-auto  object-cover object-center rounded"
+                            className="proImg"
                             src={products.imageUrl}
                         />
                         <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                             <h2 className="text-sm title-font text-gray-500 tracking-widest">
-                                BRAND NAME
+                                TGS
                             </h2>
                             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
                                 {products.title}
@@ -130,7 +131,7 @@ function ProductInfo() {
                                     >
                                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                                     </svg>
-                                    <span className="text-gray-600 ml-3">4 Reviews</span>
+                                    <span className="text-gray-600 ml-3">1092 Reviews</span>
                                 </span>
                                 <span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
                                     <a className="text-gray-500">
@@ -171,8 +172,13 @@ function ProductInfo() {
                                     </a>
                                 </span>
                             </div>
+                            <h2>Description</h2>
                             <p className="leading-relaxed border-b-2 mb-5 pb-5">
                                 {products.description}
+                            </p>
+                            <h2>Features</h2>
+                            <p className="leading-relaxed border-b-2 mb-5 pb-5">
+                                {products.features}
                             </p>
 
                             <div className="flex">
