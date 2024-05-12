@@ -6,10 +6,18 @@ import { MdOutlineProductionQuantityLimits } from 'react-icons/md'
 import { FaUser, FaCartPlus } from 'react-icons/fa';
 import { AiFillShopping, AiFillPlusCircle, AiFillDelete } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
+import './Dashboard.jsx'
+
+
 
 function DashboardTab() {
     const context = useContext(myContext)
     const { mode, product, edithandle, deleteProduct, order, user } = context
+
+    // Calculate total counts
+  const totalProducts = product.length;
+  const totalOrders = order.length;
+  const totalUsers = user.length;
 
     // console.log(product)
     let [isOpen, setIsOpen] = useState(false)
@@ -25,6 +33,7 @@ function DashboardTab() {
     const add = () => {
         window.location.href = '/addproduct'
     }
+
     return (
         <>
             <div className="container mx-auto">
@@ -34,19 +43,19 @@ function DashboardTab() {
                             <Tab>
                                 <button type="button" className="font-medium border-b-2 hover:shadow-purple-700 border-purple-500 text-purple-500 rounded-lg text-xl shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]  px-5 py-1.5 text-center bg-[#605d5d12] ">
                                     <div className="flex gap-2 items-center">
-                                        <MdOutlineProductionQuantityLimits />Products</div> </button>
+                                        <MdOutlineProductionQuantityLimits />Total Products - {totalProducts}</div> </button>
                             </Tab>
                             <Tab>
                                 <button type="button" className="font-medium border-b-2 border-pink-500 bg-[#605d5d12] text-pink-500  hover:shadow-pink-700  rounded-lg text-xl shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]    px-5 py-1.5 text-center ">
                                     <div className="flex gap-2 items-center">
-                                        <AiFillShopping /> Order
+                                        <AiFillShopping /> Order - {totalOrders}
                                     </div>
                                 </button>
                             </Tab>
                             <Tab>
                                 <button type="button" className="font-medium border-b-2 border-green-500 bg-[#605d5d12] text-green-500 rounded-lg text-xl  hover:shadow-green-700 shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]   px-5 py-1.5 text-center ">
                                     <div className="flex gap-2 items-center">
-                                        <FaUser /> Users
+                                        <FaUser /> Users - {totalUsers}
                                     </div>
                                 </button>
                             </Tab>
@@ -65,7 +74,7 @@ function DashboardTab() {
                                 </div>
                                 <div className="relative overflow-x-auto ">
                                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400  ">
-                                        <thead className="text-xs border border-gray-600 text-black uppercase bg-gray-200 shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]" style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
+                                        <thead className="text-xs border border-gray-600 text-black uppercase bg-purple-100 shadow-[inset_0_0_8px_rgba(0,0,0,0.6)]" style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
                                             <tr>
                                                 <th scope="col" className="px-6 py-3">
                                                     S.No
@@ -94,7 +103,7 @@ function DashboardTab() {
                                             const { title, price, imageUrl, category, description, date } = item;
                                             return (
                                                 <tbody className=''>
-                                                    <tr className="bg-gray-50 border-b  dark:border-gray-700" style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
+                                                    <tr className="w-100 bg-gray-100 border-b bg-blue-50 dark:border-gray-700" style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '', }} >
                                                         <td className="px-6 py-4 text-black " style={{ color: mode === 'dark' ? 'white' : '' }}>
                                                             {index + 1}.
                                                         </td>
