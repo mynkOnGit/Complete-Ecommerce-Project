@@ -73,7 +73,7 @@ function Navbar() {
                     </Link>
                   </div> : ""}
 
-                  {user?.user?.email === "knupadhyay784@gmail.com" ? <div className="flow-root">
+                  {user?.user?.email === "mayankadmin@gmail.com" ? <div className="flow-root">
                     <Link to={'/dashboard'} className="-m-2 block p-2 font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>
                       admin
                     </Link>
@@ -97,32 +97,17 @@ function Navbar() {
                   </div>
                 </div>
 
-                <div className="border-t border-gray-200 px-4 py-6">
-                  <a href="#" className="-m-2 flex items-center p-2">
-                    <img
-                      src="img/indiaflag.png"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-base font-medium text-gray-900" style={{ color: mode === 'dark' ? 'white' : '', }}>INDIA</span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
-                </div>
+
               </Dialog.Panel>
             </Transition.Child>
           </div>
         </Dialog>
       </Transition.Root>
 
-      <header className="relative bg-white">
-        <p className="flex h-10 items-center justify-center bg-pink-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8" 
-        style={{ backgroundColor: mode === 'dark' ? 'rgb(62 64 66)' : '', color: mode === 'dark' ? 'white' : '', }}>
-          Get free delivery on orders over ₹300
-        </p>
-
-        <nav aria-label="Top" className="bg-gray-100 px-4 sm:px-6 lg:px-8 shadow-xl " style={{ backgroundColor: mode === 'dark' ? '#282c34' : '', color: mode === 'dark' ? 'white' : '', }}>
+      <header className="relative bg-black">
+        <nav aria-label="Top" className="bg-purple-100 px-4 sm:px-6 lg:px-8 shadow-xl " style={{ backgroundColor: mode === 'dark' ? '#282c34' : '', color: mode === 'dark' ? 'white' : '', }}>
           <div className="">
-            <div className="flex h-16 items-center">
+            <div className="flex h-16 items-center bg-purple-100">
               <button
                 type="button"
                 className="rounded-md bg-white p-2 text-gray-400 lg:hidden"
@@ -139,7 +124,7 @@ function Navbar() {
               <div className="ml-4 flex lg:ml-0">
                 <Link to={'/'} className='flex'>
                   <div className="flex ">
-                    <h1 className=' text-2xl font-bold text-black  px-2 py-1 rounded' style={{ color: mode === 'dark' ? 'white' : '', }}>E-Bharat</h1>
+                    <h1 className=' text-2xl font-bold text-black  px-2 py-1 rounded' style={{ color: mode === 'dark' ? 'white' : '', }}>The Clothing Store</h1>
                   </div>
                 </Link>
               </div>
@@ -156,7 +141,7 @@ function Navbar() {
                       Signup
                     </Link>}
 
-                  {user?.user?.email === 'knupadhyay784@gmail.com' ? 
+                  {user?.user?.email === 'mayankadmin@gmail.com' ? 
                    <Link to={'/dashboard'} className="text-sm font-medium text-gray-700 " style={{ color: mode === 'dark' ? 'white' : '', }}>
                     Admin
                   </Link> : ""}
@@ -167,26 +152,17 @@ function Navbar() {
                   </a> : ""}
                 </div>
 
-                <div className="hidden lg:ml-8 lg:flex">
-                  <a href="#" className="flex items-center text-gray-700 ">
-                    <img
-                      src="https://ecommerce-sk.vercel.app/img/indiaflag.png"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-sm font-medium" style={{ color: mode === 'dark' ? 'white' : '', }}>INDIA</span>
-                  </a>
-                </div>
+                
                 <div className="hidden lg:ml-8 lg:flex">
                   <a href="#" className="flex items-center text-gray-700 ">
                     <img
                       className="inline-block w-10 h-10 rounded-full"
-                      src="https://overreacted.io/static/profile-pic-c715447ce38098828758e525a1128b87.jpg"
+                      src="https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/260668461/original/d90783d71e4e2d99de2ed66fa534fd64c4856182/draw-a-cute-anime-chibi-pet-or-character-couple-matching-icons-pp-pfp.png"
                       alt="Dan_Abromov" />
                   </a>
                 </div>
-
-                <div className="flex lg:ml-6">
+              {/*/////////////////////Dark Mode Light Mode Button////////////////////////////*/}
+                {/* <div className="flex lg:ml-6">
                   <button className='' onClick={toggleMode}>
                     {mode === 'light' ?
                       (<FiSun className='' size={30} />
@@ -194,7 +170,7 @@ function Navbar() {
                         (<BsFillCloudSunFill size={30} />
                         ) : ''}
                   </button>
-                </div>
+                </div> */}
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">

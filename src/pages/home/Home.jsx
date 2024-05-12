@@ -13,6 +13,7 @@ function Home() {
   return (
     <Layout>
       <HeroSection />
+      <Track />
       <Filter />
       <ProductCard />
       <div className="flex justify-center -mt-10 mb-4">
@@ -20,7 +21,7 @@ function Home() {
           <button className=' bg-gray-300 px-5 py-2 rounded-xl'>See more</button>
         </Link>
       </div>
-      <Track />
+      
       <Testimonial />
     </Layout>
   )
