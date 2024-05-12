@@ -24,8 +24,6 @@ function Signup() {
         try {
             const users = await createUserWithEmailAndPassword(auth, email, password);
 
-            // console.log(users)
-
             const user = {
                 name: name,
                 uid: users.user.uid,
@@ -47,18 +45,22 @@ function Signup() {
     }
 
     return (
-        <div className=' flex justify-center items-center h-screen'>
+        <div className='relative flex justify-center items-center h-screen'>
             {loading && <Loader/>}
-            <div className=' bg-gray-800 px-10 py-10 rounded-xl '>
+            <div
+                style={{ backgroundImage: 'url(https://wallpaperbat.com/img/412452-4k-gaming-wallpaper-1080p-bozhuwallpaper-2017-games.jpg)' }}
+                className='absolute inset-0 bg-cover bg-center '
+            ></div>
+            <div className='relative z-10 bg-transparent px-10 py-10 rounded-xl text-3xl'>
                 <div className="">
-                    <h1 className='text-center text-white text-xl mb-4 font-bold'>Signup</h1>
+                    <h1 className='text-center text-white text-4xl mb-4 font-bold'>Signup</h1>
                 </div>
                 <div>
                     <input type="text"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         name='name'
-                        className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
+                        className=' bg-gray-600 bg-opacity-50 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
                         placeholder='Name'
                     />
                 </div>
@@ -68,7 +70,7 @@ function Signup() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         name='email'
-                        className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
+                        className=' bg-gray-600 bg-opacity-50 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
                         placeholder='Email'
                     />
                 </div>
@@ -77,7 +79,7 @@ function Signup() {
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        className=' bg-gray-600 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
+                        className=' bg-gray-600 bg-opacity-50 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
                         placeholder='Password'
                     />
                 </div>
@@ -89,7 +91,7 @@ function Signup() {
                     </button>
                 </div>
                 <div>
-                    <h2 className='text-white'>Have an account <Link className=' text-red-500 font-bold' to={'/login'}>Login</Link></h2>
+                    <h4 className='text-white'>Have an account <Link className=' text-red-500 font-bold' to={'/login'}>Login</Link></h4>
                 </div>
             </div>
         </div>
