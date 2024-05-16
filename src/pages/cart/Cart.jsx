@@ -45,7 +45,7 @@ function Cart() {
   // console.log(grandTotal)
 
   /**========================================================================
-   *!                           Payment Intigration
+   *!                           Payment Integration
    *========================================================================**/ 
 
   const [name, setName] = useState("")
@@ -169,7 +169,7 @@ function Cart() {
               <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>₹{totalAmout}</p>
             </div>
             <div className="flex justify-between">
-              <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>Shipping</p>
+              <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>Standard Shipping</p>
               <p className="text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>₹{shipping}</p>
             </div>
             <hr className="my-4" />

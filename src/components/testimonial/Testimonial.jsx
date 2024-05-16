@@ -6,7 +6,7 @@ function Testimonial() {
     const { mode } = context;
     return (
         <div>
-            <section className=''>
+            {/* <section className=''>
                 <div className=" container mx-auto px-5 py-10">
                     <h1 className=' text-center text-3xl font-bold text-black' style={{ color: mode === 'dark' ? 'white' : '' }}>Testimonial</h1>
                     <h2 className=' text-center text-2xl font-semibold mb-10' style={{ color: mode === 'dark' ? 'white' : '' }}>What our <span className=' text-pink-500'>customers</span> are saying</h2>
@@ -41,7 +41,7 @@ function Testimonial() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section> */}
         </div>
     )
 }

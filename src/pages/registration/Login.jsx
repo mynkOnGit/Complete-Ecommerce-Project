@@ -15,6 +15,8 @@ function Login() {
 
     const navigate = useNavigate();
 
+    
+
     const login = async () => {
         setLoading(true)
         try {
@@ -40,6 +42,8 @@ function Login() {
 
     }
    
+    
+
     return (
         <div className='relative flex justify-center items-center h-screen'>
             {loading && <Loader/>}
@@ -53,6 +57,7 @@ function Login() {
                 </div>
                 <div>
                     <input type="email"
+                    autoComplete="off"
                     value={email}
                     onChange={(e)=> setEmail(e.target.value)}
                         name='email'
@@ -63,6 +68,7 @@ function Login() {
                 <div>
                     <input
                         type="password"
+                        autoComplete="off"
                         value={password}
                         onChange={(e)=> setPassword(e.target.value)}
                         className=' bg-gray-600 bg-opacity-50 mb-4 px-2 py-2 w-full lg:w-[20em] rounded-lg text-white placeholder:text-gray-200 outline-none'
