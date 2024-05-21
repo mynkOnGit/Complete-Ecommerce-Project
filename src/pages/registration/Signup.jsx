@@ -1,10 +1,10 @@
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import myContext from '../../context/data/myContext';
 import { toast } from 'react-toastify';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, fireDB } from '../../fireabase/FirebaseConfig';
-import { Timestamp, addDoc, collection } from 'firebase/firestore';
+import { Timestamp, setDoc, doc, getDoc } from 'firebase/firestore';
 import Loader from '../../components/loader/Loader';
 
 function Signup() {
@@ -15,38 +15,52 @@ function Signup() {
     const context = useContext(myContext);
     const { loading, setLoading } = context;
 
+    const generateUniqueId = async () => {
+        let unique = false;
+        let id = "";
+        while (!unique) {
+            id = Math.floor(100000 + Math.random() * 900000).toString();
+            const docRef = doc(fireDB, "users", id);
+            const docSnap = await getDoc(docRef);
+            if (!docSnap.exists()) {
+                unique = true;
+            }
+        }
+        return id;
+    };
+
     const signup = async () => {
-        setLoading(true)
+        setLoading(true);
         if (name === "" || email === "" || password === "") {
-            return toast.error("All fields are required")
+            setLoading(false);
+            return toast.error("All fields are required");
         }
 
         try {
             const users = await createUserWithEmailAndPassword(auth, email, password);
-
+            const uniqueId = await generateUniqueId();
             const user = {
                 name: name,
-                uid: users.user.uid,
+                uid: uniqueId,
                 email: users.user.email,
-                time : Timestamp.now()
-            }
-            const userRef = collection(fireDB, "users")
-            await addDoc(userRef, user);
-            toast.success("Signup Succesfully")
+                time: Timestamp.now()
+            };
+            const userRef = doc(fireDB, "users", uniqueId);
+            await setDoc(userRef, user);
+            toast.success("Signup Successfully");
             setName("");
             setEmail("");
             setPassword("");
-            setLoading(false)
-            
         } catch (error) {
-            console.log(error)
-            setLoading(false)
+            toast.error(error.message);
+        } finally {
+            setLoading(false);
         }
-    }
+    };
 
     return (
         <div className='relative flex justify-center items-center h-screen'>
-            {loading && <Loader/>}
+            {loading && <Loader />}
             <div
                 style={{ backgroundImage: 'url(https://wallpaperbat.com/img/412452-4k-gaming-wallpaper-1080p-bozhuwallpaper-2017-games.jpg)' }}
                 className='absolute inset-0 bg-cover bg-center '
@@ -89,8 +103,10 @@ function Signup() {
                 <div className=' flex justify-center mb-3'>
                     <button
                         onClick={signup}
-                        className=' bg-red-500 w-full text-white font-bold  px-2 py-2 rounded-lg'>
-                        Signup
+                        className=' bg-red-500 w-full text-white font-bold  px-2 py-2 rounded-lg'
+                        disabled={loading}
+                    >
+                        {loading ? "Signing Up..." : "Signup"}
                     </button>
                 </div>
                 <div>
@@ -98,7 +114,7 @@ function Signup() {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default Signup
+export default Signup;
