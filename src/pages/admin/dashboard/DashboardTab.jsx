@@ -135,12 +135,13 @@ function DashboardTab() {
                                                                             <path strokeLinecap="round" strokeLinejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L5.84 5.79m12 0H5.16m0 0c.34-.059.68-.114 1.022-.166m12 0a48.108 48.108 0 00-3.478-.443m-12 0c.34-.059.68-.114 1.022-.166m0 0L5.84 19.673A2.25 2.25 0 008.084 21.75h7.832a2.25 2.25 0 002.244-2.077L19.228 5.79M5.75 5.25h12.5m-10.25 0V3.682a1.182 1.182 0 011.182-1.182h5.136a1.182 1.182 0 011.182 1.182V5.25m-7.5 0h7.5" />
                                                                         </svg>
                                                                     </div>
+                                                                    <Link to = {"/updateproduct"}>
                                                                     <div onClick={() => edithandle(item)}>
                                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                                                             <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l2.651 2.651M18.133 2.888a1.503 1.503 0 012.122 2.122l-9.257 9.257a2.25 2.25 0 01-1.012.578l-3.281.82a.45.45 0 01-.554-.554l.82-3.281a2.25 2.25 0 01.578-1.012l9.257-9.257z" />
-                                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 7.5l6 6m-3.5 3.5H6.75a2.25 2.25 0 01-2.25-2.25V6.75a2.25 2.25 0 012.25-2.25h7.5a2.25 2.25 0 012.25 2.25V10" />
-                                                                        </svg>
+                                                                            </svg>
                                                                     </div>
+                                                                    </Link>
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -162,23 +163,28 @@ function DashboardTab() {
                                         <thead className="text-xs text-black uppercase bg-pink-200 dark:bg-gray-700 dark:text-gray-400">
                                             <tr>
                                                 <th scope="col" className="px-6 py-3">S.No</th>
+                                                <th scope="col" className="px-6 py-3">Uid</th>
                                                 <th scope="col" className="px-6 py-3">Name</th>
+                                                <th scope="col" className="px-6 py-3">Email</th>
                                                 <th scope="col" className="px-6 py-3">Address</th>
-                                                <th scope="col" className="px-6 py-3">Order</th>
+                                                <th scope="col" className="px-6 py-3">Product Name</th>
+                                                <th scope="col" className="px-6 py-3">Order Date</th>
                                                 <th scope="col" className="px-6 py-3">Amount</th>
-                                                <th scope="col" className="px-6 py-3">Payment Mode</th>
-                                                <th scope="col" className="px-6 py-3">Action</th>
+                                                <th scope="col" className="px-6 py-3">Status</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {order.map((order, index) => (
                                                 <tr key={index} className="bg-gray-100 border-b dark:bg-gray-800 dark:border-gray-700">
-                                                    <td className="px-6 py-4">{index + 1}.</td>
-                                                    <td className="px-6 py-4">{order.name}</td>
-                                                    <td className="px-6 py-4">{order.address}</td>
-                                                    <td className="px-6 py-4">{order.orderDetails}</td>
-                                                    <td className="px-6 py-4">{order.amount}</td>
-                                                    <td className="px-6 py-4">{order.paymentMode}</td>
+                                                    <td className="px-6 py-4">{index + 1}</td>
+                                                    <td className="px-6 py-4">{order.userid}</td>
+                                                    <td className="px-6 py-4">{order.addressInfo.name}</td>
+                                                    <td className="px-6 py-4">{order.email}</td>
+                                                    <td className="px-6 py-4">{order.addressInfo.address}</td>
+                                                    <td className="px-6 py-4">{order.cartItems[0].title}</td>
+                                                    <td className="px-6 py-4">{order.date}</td>
+                                                    <td className="px-6 py-4">{order.cartItems[0].price}</td>
+                                                    
                                                     <td className="px-6 py-4">
                                                         <button className="text-red-600 hover:text-red-900" onClick={() => deleteOrder(order)}>
                                                             <AiFillDelete size={20} />
@@ -223,15 +229,14 @@ function DashboardTab() {
                                                 const { uid, name, email, role } = user;
                                                 return (
                                                     <tr key={index} className="w-100 bg-gray-100 border-b bg-blue-50 dark:border-gray-700"
-                                                        style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '' }}
-                                                    >
-                                                    <td className="px-6 py-4">{user.uid}</td> {/* Display UID instead of S.No */}
+                                                        style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '' }}>
+                                                    <td className="px-6 py-4">{user.uid}</td>
                                                     <td className="px-6 py-4">{user.name}</td>
                                                     <td className="px-6 py-4">{user.email}</td>
                                                     <td className="px-6 py-4">{user.role}</td>
                                                     <td className="px-6 py-4">
                                                         <button className="text-red-600 hover:text-red-900" onClick={() => deleteUser(user)}>
-                                                            <AiFillDelete size={20} />
+                                                            <AiFillDelete size={20}/>
                                                         </button>
                                                     </td>
                                                     </tr>
