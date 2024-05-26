@@ -8,9 +8,14 @@ import { AiFillShopping, AiFillPlusCircle, AiFillDelete } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import './Dashboard.jsx';
 
+//  // Function to update order status
+//      const acceptOrder = (orderId) => {
+//       // Assuming you have a function to update order status in your context
+//       updateOrderStatus(orderId, "Accepted");
+//  };
 function DashboardTab() {
     const context = useContext(myContext);
-    const { mode, product, edithandle, deleteProduct, order, user , deleteUser} = context;
+    const { mode, product, edithandle,updateOrderStatus, deleteProduct, order, user , deleteUser} = context;
 
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -62,8 +67,8 @@ function DashboardTab() {
                             </Tab>
                         </TabList>
 
-                        {/* Product Tab */}
-                        <TabPanel>
+                       {/* Product Tab */}
+                       <TabPanel>
                             {/* Add search bar */}
                             <div className="flex justify-between items-center mb-4">
                                 <input
@@ -117,6 +122,7 @@ function DashboardTab() {
                                         <tbody>
                                             {filteredProductsByCategory.map((item, index) => {
                                                 const { title, price, imageUrl, category, date } = item;
+
                                                 return (
                                                     <tr key={index} className="w-100 bg-gray-100 border-b bg-blue-50 dark:border-gray-700"
                                                         style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '' }}
@@ -136,11 +142,11 @@ function DashboardTab() {
                                                                         </svg>
                                                                     </div>
                                                                     <Link to = {"/updateproduct"}>
-                                                                    <div onClick={() => edithandle(item)}>
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                                                            <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l2.651 2.651M18.133 2.888a1.503 1.503 0 012.122 2.122l-9.257 9.257a2.25 2.25 0 01-1.012.578l-3.281.82a.45.45 0 01-.554-.554l.82-3.281a2.25 2.25 0 01.578-1.012l9.257-9.257z" />
+                                                                        <div onClick={() => edithandle(item)}>
+                                                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                                                                <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l2.651 2.651M18.133 2.888a1.503 1.503 0 012.122 2.122l-9.257 9.257a2.25 2.25 0 01-1.012.578l-3.281.82a.45.45 0 01-.554-.554l.82-3.281a2.25 2.25 0 01.578-1.012l9.257-9.257z" />
                                                                             </svg>
-                                                                    </div>
+                                                                        </div>
                                                                     </Link>
                                                                 </div>
                                                             </div>
@@ -171,32 +177,46 @@ function DashboardTab() {
                                                 <th scope="col" className="px-6 py-3">Order Date</th>
                                                 <th scope="col" className="px-6 py-3">Amount</th>
                                                 <th scope="col" className="px-6 py-3">Status</th>
+                                                <th scope="col" className="px-6 py-3">Actions</th> {/* Added Actions column */}
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {order.map((order, index) => (
-                                                <tr key={index} className="bg-gray-100 border-b dark:bg-gray-800 dark:border-gray-700">
-                                                    <td className="px-6 py-4">{index + 1}</td>
-                                                    <td className="px-6 py-4">{order.userid}</td>
-                                                    <td className="px-6 py-4">{order.addressInfo.name}</td>
-                                                    <td className="px-6 py-4">{order.email}</td>
-                                                    <td className="px-6 py-4">{order.addressInfo.address}</td>
-                                                    <td className="px-6 py-4">{order.cartItems[0].title}</td>
-                                                    <td className="px-6 py-4">{order.date}</td>
-                                                    <td className="px-6 py-4">{order.cartItems[0].price}</td>
-                                                    
-                                                    <td className="px-6 py-4">
-                                                        <button className="text-red-600 hover:text-red-900" onClick={() => deleteOrder(order)}>
-                                                            <AiFillDelete size={20} />
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            ))}
+                                            {order.map((order, index) => {
+                                                const { id, uid, name, email, address, productName, orderDate, amount, status } = order;
+
+                                                return (
+                                                    <tr key={id} className="bg-gray-100 border-b bg-blue-50 dark:border-gray-700"
+                                                        style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '' }}
+                                                    >
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{index + 1}.</td>
+                                                        <td className="px-6 py-4 font-medium" style={{ color: mode === 'dark' ? 'white' : '' }}>{uid}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{name}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{email}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{address}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{productName}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{orderDate}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{amount}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{status}</td>
+                                                        <td className="px-6 py-4">
+                                                            <button
+                                                                onClick={() => updateOrderStatus(id, 'Accepted')} // Updated to accept order
+                                                                type="button"
+                                                                className="focus:outline-none text-white bg-green-600 shadow-[inset_0_0_10px_rgba(0,0,0,0.6)] border hover:bg-green-700 outline-0 font-medium rounded-lg text-sm px-5 py-2.5 mb-2"
+                                                                style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '', color: mode === 'dark' ? 'white' : '' }}
+                                                            >
+                                                                Accept Order
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })}
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </TabPanel>
+
+
 
                         {/* Users Tab */}
                         <TabPanel>

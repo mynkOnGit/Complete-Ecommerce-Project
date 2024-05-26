@@ -64,9 +64,9 @@ function Cart() {
         draggable: true,
         progress: undefined,
         theme: "colored",
-      })
+      });
     }
-
+  
     const addressInfo = {
       name,
       address,
@@ -80,8 +80,8 @@ function Cart() {
           year: "numeric",
         }
       )
-    }
-
+    };
+  
     var options = {
       key: "rzp_test_o9TrELMG6XF0jc",
       key_secret: "oqxctbSEWc6JTbDvMSdu3WaU",
@@ -90,12 +90,12 @@ function Cart() {
       order_receipt: 'order_rcptid_' + name,
       name: "The Gaming Store",
       description: "for testing purpose",
-      handler: function (response) {
-        console.log(response)
-        toast.success('Payment Successful')
-
+      handler: async function (response) {
+        console.log(response);
+        toast.success('Payment Successful');
+  
         const paymentId = response.razorpay_payment_id;
-
+  
         const orderInfo = {
           cartItems,
           addressInfo,
@@ -109,30 +109,32 @@ function Cart() {
           ),
           email: JSON.parse(localStorage.getItem("user")).user.email,
           userid: JSON.parse(localStorage.getItem("user")).user.uid,
-          paymentId
-        }
-
+          paymentId,
+          status: "Pending" // Added order status
+        };
+  
         try {
-
           const orderRef = collection(fireDB, 'order');
-          addDoc(orderRef, orderInfo);
-
+          await addDoc(orderRef, orderInfo);
+  
+          // Clear cart after successful purchase
+          dispatch(deleteFromCart());
+  
+          // Redirect or perform any other actions after successful purchase
         } catch (error) {
-          console.log(error)
+          console.log(error);
         }
       },
-
+  
       theme: {
         color: "#3399cc"
       }
     };
-
+  
     var pay = new window.Razorpay(options);
     pay.open();
-    console.log(pay)
-
-
-  }
+  };
+  
   return (
     <Layout >
       <div className="h-screen bg-gray-100 pt-5 mb-[60%] " style={{ backgroundColor: mode === 'dark' ? '#282c34' : '', color: mode === 'dark' ? 'white' : '', }}>
