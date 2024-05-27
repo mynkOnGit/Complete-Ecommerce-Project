@@ -21,11 +21,11 @@ function Order() {
           {order.filter(obj => obj.userid === userid).map(order => (
             <div
               key={order.id}
-              className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 mx-auto max-w-5xl rounded-lg shadow-md p-6 mb-6"
+              className="bg-white dark:bg-purple-100 border border-gray-300 dark:border-gray-700 mx-auto max-w-5xl rounded-lg shadow-md p-6 mb-6"
             >
               <div className="mb-4">
                 <h2
-                  className="text-lg font-bold text-gray-900 dark:text-white"
+                  className="text-lg font-bold text-gray-900 dark:text-dark"
                 >
                   Order Status: {order.status || "Pending"}
                 </h2>
@@ -37,7 +37,7 @@ function Order() {
               </div>
               <div className="mt-5">
                 <h3
-                  className="text-lg font-bold text-gray-900 dark:text-white mb-2"
+                  className="text-lg font-bold text-gray-900 dark:text-black mb-2"
                 >
                   Products:
                 </h3>
@@ -53,7 +53,7 @@ function Order() {
                     />
                     <div>
                       <h4
-                        className="text-md font-bold text-gray-900 dark:text-white"
+                        className="text-md font-bold text-gray-900 dark:text-black"
                       >
                         {item.title}
                       </h4>

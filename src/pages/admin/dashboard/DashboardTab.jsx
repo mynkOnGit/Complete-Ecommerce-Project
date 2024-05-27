@@ -8,11 +8,6 @@ import { AiFillShopping, AiFillPlusCircle, AiFillDelete } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import './Dashboard.jsx';
 
-//  // Function to update order status
-//      const acceptOrder = (orderId) => {
-//       // Assuming you have a function to update order status in your context
-//       updateOrderStatus(orderId, "Accepted");
-//  };
 function DashboardTab() {
     const context = useContext(myContext);
     const { mode, product, edithandle,updateOrderStatus, deleteProduct, order, user , deleteUser} = context;
