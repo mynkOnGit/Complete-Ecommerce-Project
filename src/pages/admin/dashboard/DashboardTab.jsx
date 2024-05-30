@@ -177,21 +177,19 @@ function DashboardTab() {
                                         </thead>
                                         <tbody>
                                             {order.map((order, index) => {
-                                                const { id, uid, name, email, address, productName, orderDate, amount, status } = order;
-
+                                                const { id, uid, name, email, address, title, date, price, status } = order;
                                                 return (
                                                     <tr key={id} className="bg-gray-100 border-b bg-blue-50 dark:border-gray-700"
-                                                        style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '' }}
-                                                    >
+                                                        style={{ backgroundColor: mode === 'dark' ? 'rgb(46 49 55)' : '' }}>   
                                                         <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{index + 1}.</td>
-                                                        <td className="px-6 py-4 font-medium" style={{ color: mode === 'dark' ? 'white' : '' }}>{uid}</td>
-                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{name}</td>
-                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{email}</td>
-                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{address}</td>
-                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{productName}</td>
-                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{orderDate}</td>
-                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{amount}</td>
-                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{status}</td>
+                                                        <td className="px-6 py-4 font-medium" style={{ color: mode === 'dark' ? 'white' : '' }}>{order.userid}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{order.addressInfo.name}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{order.email}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{order.addressInfo.address}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{order.cartItems.title}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{order.date}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{order.cartItems.price}</td>
+                                                        <td className="px-6 py-4" style={{ color: mode === 'dark' ? 'white' : '' }}>{order.status}</td>
                                                         <td className="px-6 py-4">
                                                             <button
                                                                 onClick={() => updateOrderStatus(id, 'Accepted')} // Updated to accept order
@@ -235,7 +233,6 @@ function DashboardTab() {
                                                 <th scope="col" className="px-6 py-3">UID</th>
                                                 <th scope="col" className="px-6 py-3">Name</th>
                                                 <th scope="col" className="px-6 py-3">Email</th>
-                                                <th scope="col" className="px-6 py-3">Role</th>
                                                 <th scope="col" className="px-6 py-3">Action</th>
                                             </tr>
                                         </thead>
@@ -248,7 +245,6 @@ function DashboardTab() {
                                                     <td className="px-6 py-4">{user.uid}</td>
                                                     <td className="px-6 py-4">{user.name}</td>
                                                     <td className="px-6 py-4">{user.email}</td>
-                                                    <td className="px-6 py-4">{user.role}</td>
                                                     <td className="px-6 py-4">
                                                         <button className="text-red-600 hover:text-red-900" onClick={() => deleteUser(user)}>
                                                             <AiFillDelete size={20}/>

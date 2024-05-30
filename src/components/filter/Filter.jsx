@@ -65,7 +65,7 @@ function Filter() {
                   <option key={index} value={category}>{category}</option>
                 ))}
               </select>
-              <select
+              {/* <select
                 value={sortPrice}
                 onChange={(e) => setSortPrice(e.target.value)}
                 className="px-4 py-3 w-full rounded-md bg-gray-50 border-transparent outline-0 focus:border-gray-500 focus:bg-white focus:ring-0 text-sm"
@@ -73,7 +73,7 @@ function Filter() {
                 <option value="">Sort by Price</option>
                 <option value="lowToHigh">Low to High</option>
                 <option value="highToLow">High to Low</option>
-              </select>
+              </select> */}
             </div>
           </div>
         </div>

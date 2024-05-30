@@ -6,7 +6,7 @@ import Modal from '../../components/modal/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFromCart } from '../../redux/cartSlice';
 import { toast } from 'react-toastify';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { fireDB } from '../../fireabase/FirebaseConfig';
 
 function Cart() {
@@ -124,6 +124,7 @@ function Cart() {
         const orderInfo = {
           cartItems,
           addressInfo,
+          timestamp: serverTimestamp(),
           date: new Date().toLocaleString("en-US", {
             month: "short",
             day: "2-digit",
@@ -169,7 +170,7 @@ function Cart() {
                   <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                     <div className="mt-5 sm:mt-0">
                       <h2 className="text-lg font-bold text-gray-900" style={{ color: mode === 'dark' ? 'white' : '' }}>{title}</h2>
-                      <h2 className="text-sm text-gray-900" style={{ color: mode === 'dark' ? 'white' : '' }}>{description}</h2>
+                      
                       <p className="mt-1 text-xs font-semibold text-gray-700" style={{ color: mode === 'dark' ? 'white' : '' }}>₹{price}</p>
                       <div className="flex mt-4">
                         <button onClick={() => decreaseQuantity(id)} className="px-2 py-1 bg-gray-200 rounded">-</button>
